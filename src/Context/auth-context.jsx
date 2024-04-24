@@ -8,7 +8,7 @@ const AuthDispatcherContext = React.createContext() // dar dakhlesh mikhaym comp
 
 // 2 custom hook :
 // Custom hook for accessing the auth state context. Ensures the hook is used within a provider.
-export function useAuthState() {
+
 export function useAuthState() {
     const context = useContext(AuthStateContext)
 
