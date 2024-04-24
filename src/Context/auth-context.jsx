@@ -5,14 +5,44 @@ const AuthDispatcherContext = React.createContext() // dar dakhlesh mikhaym comp
 
 // ye component bara provider va 2 custoom hook bara inke hardafe context tekrar nakonim  
 
-export function AuthProvider({children}){
 
-const [state,dispatch ]= useReducer(reducer, initalState)
+// 2 custom hook :
 
-return (
-    <AuthStateContext.Provider value={state}>
+export function useAuthState() {
+    const context = useContext(AuthStateContext)
 
-    </AuthStateContext.Provider>
-)
+    // dakhel ey consumer estedade mikonim chon meghdar avalie nadarim check mikonim age context nabood az authprovider dakhel barname estedafe nashode
+    // pas ye error tolid mikonim .
+    if (!context) {
+        throw error('useAuthState must be defined with a authprovider')
+    }
+    return context;
+}
 
+
+export function useAuthDispatch(){
+
+    if (!context) {
+        throw error('useAuthDispatch must be defined with a authprovider')
+    }
+    return context;
+}
+
+
+
+
+
+
+
+export function AuthProvider({ children }) {
+
+    const [state, dispatch] = useReducer(reducer, initalState)
+
+    return (
+        <AuthStateContext.Provider value={state}>
+            <AuthDispatcherContext.Provider value={dispatch} >
+                {children}
+            </AuthDispatcherContext.Provider>
+        </AuthStateContext.Provider>
+    )
 }
