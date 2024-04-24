@@ -20,7 +20,7 @@ export function useAuthState() {
     return context;
 }
 
-
+// Custom hook for accessing the auth dispatch context. Ensures the hook is used within a provider.
 export function useAuthDispatch(){
 
     if (!context) {
