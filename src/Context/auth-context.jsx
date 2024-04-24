@@ -1,5 +1,5 @@
 import React, { useReducer, useContext } from 'react'
-
+// Create context for auth state and dispatch; these will be used to manage and distribute auth state and actions.
 const AuthStateContext = React.createContext()
 const AuthDispatcherContext = React.createContext() // dar dakhlesh mikhaym component Auth provider ijad konim.
 
@@ -7,7 +7,8 @@ const AuthDispatcherContext = React.createContext() // dar dakhlesh mikhaym comp
 
 
 // 2 custom hook :
-
+// Custom hook for accessing the auth state context. Ensures the hook is used within a provider.
+export function useAuthState() {
 export function useAuthState() {
     const context = useContext(AuthStateContext)
 
@@ -38,6 +39,14 @@ export function AuthProvider({ children }) {
 
     const [state, dispatch] = useReducer(reducer, initalState)
 
+
+
+
+
+
+
+
+     // Context Providers wrapping children to provide state and dispatch down the component tree
     return (
         <AuthStateContext.Provider value={state}>
             <AuthDispatcherContext.Provider value={dispatch} >
